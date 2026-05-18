@@ -19,6 +19,11 @@
           <img src="images/logo.svg" alt="" />
           <span>Mirava</span>
         </a>
+        <div class="site-nav">
+          <a href="index.html" aria-current="page" data-i18n="navHome">خانه</a>
+          <a href="about.html" data-i18n="navAbout">درباره</a>
+          <a href="#support" data-i18n="navDonate">حمایت</a>
+        </div>
         <button id="langToggle" class="lang-toggle" type="button">EN</button>
       </nav>
       <div class="hero-content">
@@ -143,6 +148,40 @@
     </div>
 
     <section class="section controls-section">
+      <div class="category-tabs" aria-label="دسته‌بندی میرورها">
+        <button
+          class="category-tab active"
+          type="button"
+          data-category="all"
+          data-i18n="categoryAll"
+        >
+          همه
+        </button>
+        <button
+          class="category-tab"
+          type="button"
+          data-category="operating-systems"
+          data-i18n="categoryOperatingSystems"
+        >
+          سیستم‌عامل‌ها
+        </button>
+        <button
+          class="category-tab"
+          type="button"
+          data-category="containers"
+          data-i18n="categoryContainers"
+        >
+          کانتینرها
+        </button>
+        <button
+          class="category-tab"
+          type="button"
+          data-category="packages"
+          data-i18n="categoryPackages"
+        >
+          پکیج‌ها
+        </button>
+      </div>
       <input
         type="text"
         id="mirrorSearchInput"
@@ -204,26 +243,49 @@
       <div class="support-card glass">
         <div>
           <span class="eyebrow" data-i18n="support">حمایت</span>
-          <h2 data-i18n="paymentGateway">درگاه پرداخت</h2>
+          <h2 data-i18n="paymentGateway">راه‌های حمایت مالی</h2>
           <p data-i18n="supportText">
             اگر میراوا برای شما مفید بوده، می‌توانید در نگهداری و توسعه آن حمایت
             کنید.
           </p>
         </div>
-        <a
-          class="payment-btn"
-          href="https://payping.ir/d/B4Ne"
-          target="_blank"
-          rel="noopener"
-          aria-label="Open Mirava payment gateway"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5v-9Zm2 1.2h14V7.5a.5.5 0 0 0-.5-.5h-13a.5.5 0 0 0-.5.5v1.2Zm0 3v4.8a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-4.8H5Zm2.2 3.1h4.2v1.4H7.2v-1.4Z"
-            />
-          </svg>
-          <span data-i18n="payBtn">پرداخت</span>
-        </a>
+        <div class="donation-panel">
+          <a
+            class="payment-btn"
+            href="https://daramet.com/mirava"
+            target="_blank"
+            rel="noopener"
+            aria-label="Open Mirava rial payment gateway"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5v-9Zm2 1.2h14V7.5a.5.5 0 0 0-.5-.5h-13a.5.5 0 0 0-.5.5v1.2Zm0 3v4.8a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-4.8H5Zm2.2 3.1h4.2v1.4H7.2v-1.4Z"
+              />
+            </svg>
+            <span data-i18n="payBtn">پرداخت ریالی</span>
+          </a>
+          <a
+            class="payment-btn payment-btn-secondary"
+            href="https://payping.ir/d/B4Ne"
+            target="_blank"
+            rel="noopener"
+            aria-label="Open Mirava PayPing payment gateway"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5v-9Zm2 1.2h14V7.5a.5.5 0 0 0-.5-.5h-13a.5.5 0 0 0-.5.5v1.2Zm0 3v4.8a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-4.8H5Zm2.2 3.1h4.2v1.4H7.2v-1.4Z"
+              />
+            </svg>
+            <span data-i18n="payPingBtn">پرداخت با پی‌پینگ</span>
+          </a>
+          <div class="crypto-list" dir="ltr" aria-label="Crypto donation addresses">
+            <div><strong>BTC</strong><code>bc1qlyvjpynewlhhhks4ggrvre2p9sceap93rrkff4</code></div>
+            <div><strong>ETH</strong><code>0x68fd4b097f0b17FC2Ad152a6D1f841413cb815DD</code></div>
+            <div><strong>TRX</strong><code>TQwXwPJQ8kAUTBYb4LhmDVwcifvsz8NbMz</code></div>
+            <div><strong>USDT BEP20</strong><code>0x68fd4b097f0b17FC2Ad152a6D1f841413cb815DD</code></div>
+            <div><strong>USD Polygon</strong><code>0x68fd4b097f0b17FC2Ad152a6D1f841413cb815DD</code></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -283,27 +345,26 @@
           </svg>
         </a>
       </div>
-    <footer>
-    <div class="footer-text">
-      <span data-i18n="footerText">
-      © Mirava • متن‌باز • آزادی از مسیر دسترسی • قدرت گرفته شده از
-      </span>
+      <div class="footer-text">
+        <span data-i18n="footerText">
+          © Mirava • متن‌باز • آزادی از مسیر دسترسی • قدرت گرفته شده از
+        </span>
 
-    <a
-      href="https://liara.ir/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="liara"
-    >
-      <img
-        src="https://liara.ir/favicon.ico"
-        alt="Liara"
-        width="16"
-        height="16"
-      />
-      <span data-i18n="liaratrans">لیارا</span>
-    </a>
-    </div>
+        <a
+          href="https://liara.ir/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="liara"
+        >
+          <img
+            src="https://liara.ir/favicon.ico"
+            alt="Liara"
+            width="16"
+            height="16"
+          />
+          <span data-i18n="liaratrans">لیارا</span>
+        </a>
+      </div>
     </footer>
 
     <script src="script.js"></script>

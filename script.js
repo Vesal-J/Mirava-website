@@ -3,12 +3,16 @@ const toast = document.getElementById("copyToast");
 const searchInput = document.getElementById("mirrorSearchInput");
 const statusFilter = document.getElementById("statusFilter");
 const packageFilter = document.getElementById("packageFilter");
+const categoryTabs = document.querySelectorAll(".category-tab");
 const statusChartsContainer = document.getElementById("statusCharts");
 const langToggle = document.getElementById("langToggle");
 
 const translations = {
   fa: {
     documentTitle: "Mirava — آینه‌های نرم‌افزاری",
+    navHome: "خانه",
+    navAbout: "درباره",
+    navDonate: "حمایت",
     heroText:
       "فهرست بروزی از میرورهای نرم‌افزاری ایران برای دسترسی سریع‌تر و قابل اتکاتر به پکیج‌ها، مخازن و ابزارهای توسعه.",
     supportMirava: "حمایت از میراوا",
@@ -22,6 +26,16 @@ const translations = {
     yourEmail: "ایمیل شما (اختیاری)",
     submitSuggestion: "ثبت پیشنهاد",
     suggestionDone: "پیشنهاد با موفقیت ثبت شد.",
+    mirrorNamePlaceholder: "مثلا: University of Tehran Mirror",
+    mirrorUrlPlaceholder: "https://example.com/mirror",
+    mirrorDescPlaceholder: "این میرور چه پکیج‌ها یا سرویس‌هایی را پوشش می‌دهد؟",
+    mirrorPackagesPlaceholder: "مثلا: apt, pypi, npm, docker",
+    submitterNamePlaceholder: "نامی که برای اعتباردهی نمایش داده شود",
+    submitterEmailPlaceholder: "برای پیگیری، نه ارسال پیام تبلیغاتی",
+    categoryAll: "همه",
+    categoryOperatingSystems: "سیستم‌عامل‌ها",
+    categoryContainers: "کانتینرها",
+    categoryPackages: "پکیج‌ها",
     allStatuses: "همه وضعیت‌ها",
     onlineOnly: "فقط آنلاین",
     offlineOnly: "فقط آفلاین",
@@ -32,10 +46,11 @@ const translations = {
     copied: "لینک کپی شد.",
     chartsEyebrow: "وضعیت اتصال",
     chartsTitle: "نمودار ۲۴ ساعته اتصال میرورها",
-    paymentGateway: "درگاه پرداخت",
+    paymentGateway: "راه‌های حمایت مالی",
     supportText:
       "اگر میراوا برای شما مفید بوده، می‌توانید در نگهداری و توسعه آن حمایت کنید.",
-    payBtn: "پرداخت",
+    payBtn: "پرداخت ریالی",
+    payPingBtn: "پرداخت با پی‌پینگ",
     support: "حمایت",
     community: "جامعه",
     contributors: "مشارکت‌کننده‌ها",
@@ -76,6 +91,9 @@ const translations = {
   },
   en: {
     documentTitle: "Mirava — Free Mirrors",
+    navHome: "Home",
+    navAbout: "About",
+    navDonate: "Donate",
     heroText:
       "A live directory of Iranian software mirrors for faster, more reliable access to packages, repositories, and developer tools.",
     supportMirava: "Support Mirava",
@@ -89,6 +107,16 @@ const translations = {
     yourEmail: "Your Email (Optional)",
     submitSuggestion: "Submit Suggestion",
     suggestionDone: "Suggestion submitted successfully.",
+    mirrorNamePlaceholder: "Example: University of Tehran Mirror",
+    mirrorUrlPlaceholder: "https://example.com/mirror",
+    mirrorDescPlaceholder: "What packages or services does this mirror cover?",
+    mirrorPackagesPlaceholder: "e.g., apt, pypi, npm, docker",
+    submitterNamePlaceholder: "How should we credit you?",
+    submitterEmailPlaceholder: "For follow-up only. No spam.",
+    categoryAll: "All",
+    categoryOperatingSystems: "Operating Systems",
+    categoryContainers: "Containers",
+    categoryPackages: "Packages",
     allStatuses: "All statuses",
     onlineOnly: "Online only",
     offlineOnly: "Offline only",
@@ -99,10 +127,11 @@ const translations = {
     copied: "Link copied.",
     chartsEyebrow: "Connectivity",
     chartsTitle: "24-hour Mirror Connectivity",
-    paymentGateway: "Payment Gateway",
+    paymentGateway: "Donation Options",
     supportText:
       "If Mirava has been useful to you, you can support its maintenance and development.",
-    payBtn: "Donate",
+    payBtn: "Rial Donation",
+    payPingBtn: "PayPing Donation",
     support: "Support",
     community: "Community",
     contributors: "Contributors",
@@ -161,6 +190,65 @@ let hourlyHistory = loadHourlyHistory();
 let checkInProgress = false;
 let lastCheckedAt = null;
 const expandedMirrors = new Set();
+let activeCategory = "all";
+
+const categoryMatchers = {
+  "operating-systems": [
+    "alma",
+    "alpine",
+    "arch",
+    "centos",
+    "ctan",
+    "debian",
+    "epel",
+    "fedora",
+    "freebsd",
+    "kali",
+    "linux",
+    "manjaro",
+    "mint",
+    "openbsd",
+    "opensuse",
+    "oracle",
+    "raspbian",
+    "rhel",
+    "rocky",
+    "ubuntu",
+    "windows",
+  ],
+  containers: [
+    "container",
+    "docker",
+    "ghcr",
+    "image",
+    "k8s",
+    "kubernetes",
+    "mcr",
+    "quay",
+    "registry",
+  ],
+  packages: [
+    "android",
+    "composer",
+    "dart",
+    "flutter",
+    "go",
+    "gradle",
+    "java",
+    "maven",
+    "node",
+    "npm",
+    "nuget",
+    "packagist",
+    "php",
+    "pip",
+    "pypi",
+    "python",
+    "ruby",
+    "rust",
+    "yarn",
+  ],
+};
 
 function t(key) {
   return translations[currentLang][key] || key;
@@ -174,6 +262,23 @@ function mirrorHasPackage(mirror, packageName) {
   if (packageName === "all") return true;
   const target = normalizePackage(packageName);
   return mirror.packages.some((pkg) => normalizePackage(pkg).includes(target));
+}
+
+function mirrorMatchesCategory(mirror, category) {
+  if (category === "all") return true;
+  const haystack = [
+    mirror.name,
+    mirror.description,
+    mirror.url,
+    ...mirror.packages,
+    ...((mirror.packageUrls || []).map((pkg) => `${pkg.name} ${pkg.url}`)),
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  return (categoryMatchers[category] || []).some((matcher) =>
+    haystack.includes(matcher),
+  );
 }
 
 function getStatus(url) {
@@ -195,6 +300,7 @@ function getFilteredMirrors() {
 
   return allMirrors.filter((mirror) => {
     const statusMatches = status === "all" || getStatus(mirror.url) === status;
+    const categoryMatches = mirrorMatchesCategory(mirror, activeCategory);
     const packageMatches = mirrorHasPackage(mirror, packageName);
     const queryMatches =
       !query ||
@@ -203,7 +309,7 @@ function getFilteredMirrors() {
       mirror.url.toLowerCase().includes(query) ||
       mirror.packages.some((pkg) => pkg.toLowerCase().includes(query));
 
-    return statusMatches && packageMatches && queryMatches;
+    return statusMatches && categoryMatches && packageMatches && queryMatches;
   });
 }
 
@@ -215,6 +321,10 @@ function showToast() {
 
 function copyMirrorUrl(url) {
   navigator.clipboard.writeText(url).then(showToast).catch(showToast);
+}
+
+function copyDonationCode(code) {
+  navigator.clipboard.writeText(code).then(showToast).catch(showToast);
 }
 
 function renderCards() {
@@ -845,6 +955,12 @@ function applyLanguage() {
   document.title = t("documentTitle");
   langToggle.textContent = currentLang === "fa" ? "EN" : "FA";
   searchInput.placeholder = t("searchPlaceholder");
+  document.getElementById("mirrorName").placeholder = t("mirrorNamePlaceholder");
+  document.getElementById("mirrorUrl").placeholder = t("mirrorUrlPlaceholder");
+  document.getElementById("mirrorDesc").placeholder = t("mirrorDescPlaceholder");
+  document.getElementById("mirrorPackages").placeholder = t("mirrorPackagesPlaceholder");
+  document.getElementById("submitterName").placeholder = t("submitterNamePlaceholder");
+  document.getElementById("submitterEmail").placeholder = t("submitterEmailPlaceholder");
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n;
@@ -1031,6 +1147,21 @@ if (contributorsContainer) {
 searchInput.addEventListener("input", debounce(renderCards, 180));
 statusFilter.addEventListener("change", renderAll);
 packageFilter.addEventListener("change", renderAll);
+categoryTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    activeCategory = tab.dataset.category || "all";
+    categoryTabs.forEach((item) => {
+      item.classList.toggle("active", item === tab);
+    });
+    renderAll();
+  });
+});
+document.querySelectorAll(".crypto-list div").forEach((row) => {
+  row.addEventListener("click", () => {
+    const code = row.querySelector("code");
+    if (code) copyDonationCode(code.textContent.trim());
+  });
+});
 langToggle.addEventListener("click", () => {
   currentLang = currentLang === "fa" ? "en" : "fa";
   localStorage.setItem("mirava-lang", currentLang);

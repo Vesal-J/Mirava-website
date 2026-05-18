@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>درباره میراوا</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="about-page">
+    <div class="bg"></div>
+
+    <header class="hero">
+      <nav class="topbar" aria-label="ناوبری اصلی">
+        <a class="brand-mark" href="index.html" aria-label="Mirava home">
+          <img src="images/logo.svg" alt="" />
+          <span>Mirava</span>
+        </a>
+        <div class="site-nav">
+          <a href="index.html" data-about-i18n="navHome">خانه</a>
+          <a href="about.html" aria-current="page" data-about-i18n="navAbout"
+            >درباره</a
+          >
+          <a href="#donate" data-about-i18n="navDonate">حمایت</a>
+        </div>
+        <button id="aboutLangToggle" class="lang-toggle" type="button">
+          EN
+        </button>
+      </nav>
+
+      <div class="hero-content">
+        <img src="images/logo.svg" alt="Mirava Logo" class="logo" />
+        <div class="hero-text">
+          <h1 data-about-i18n="heroTitle">درباره میراوا</h1>
+          <p data-about-i18n="heroText">
+            میراوا یک نقشه زنده از مسیرهای قابل اتکای نرم‌افزاری است؛ جایی برای
+            پیدا کردن میرورهایی که توسعه را در ایران سریع‌تر، پایدارتر و
+            کم‌دردسرتر می‌کنند.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section about-layout">
+        <article class="about-card glass">
+          <span class="eyebrow" data-about-i18n="missionEyebrow">ماموریت</span>
+          <h2 data-about-i18n="missionTitle">
+            وقتی مسیر اصلی کند می‌شود، مسیر جایگزین باید آماده باشد
+          </h2>
+          <p data-about-i18n="missionP1">
+            میراوا یک پروژه جامعه‌محور برای جمع‌آوری، دسته‌بندی و پایش میرورهای
+            نرم‌افزاری، مخازن پکیج و منابع زیرساختی قابل دسترس از داخل ایران
+            است.
+          </p>
+          <p data-about-i18n="missionP2">
+            هدف ما ساده است: توسعه‌دهنده، ادمین سیستم و جامعه متن‌باز نباید برای
+            نصب یک پکیج، گرفتن یک ایمیج یا به‌روزرسانی یک مخزن، درگیر آزمون و
+            خطای بی‌پایان شود.
+          </p>
+          <p data-about-i18n="missionP3">
+            میراوا میرورهای قابل اعتماد را زیر نظر می‌گیرد، وضعیتشان را نمایش
+            می‌دهد و کمک می‌کند در زمان محدودیت، اختلال یا کندی شبکه، انتخاب
+            سریع‌تر و مطمئن‌تری داشته باشید.
+          </p>
+        </article>
+
+        <aside class="about-card glass">
+          <span class="eyebrow" data-about-i18n="tracksEyebrow">دسته‌بندی</span>
+          <h2 data-about-i18n="tracksTitle">میرورها، مرتب و قابل فهم</h2>
+          <ul class="about-list">
+            <li data-about-i18n="trackOs">
+              مخازن سیستم‌عامل برای توزیع‌های لینوکس، BSD و ابزارهای پایه.
+            </li>
+            <li data-about-i18n="trackContainers">
+              رجیستری‌های کانتینر برای Docker و ایمیج‌های پرکاربرد زیرساختی.
+            </li>
+            <li data-about-i18n="trackPackages">
+              اکوسیستم‌های پکیج مثل npm، PyPI، Maven، Composer، NuGet و ابزارهای
+              توسعه.
+            </li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="donate" class="section support-section">
+        <div class="support-card glass">
+          <div>
+            <span class="eyebrow" data-about-i18n="supportEyebrow">حمایت</span>
+            <h2 data-about-i18n="supportTitle">کمک کنید این مسیر روشن بماند</h2>
+            <p data-about-i18n="supportText">
+              حمایت مالی شما صرف نگهداری، پایش، بهبود تجربه کاربری و هماهنگی
+              جامعه می‌شود.
+            </p>
+          </div>
+          <div class="donation-panel">
+            <a
+              class="payment-btn"
+              href="https://daramet.com/mirava"
+              target="_blank"
+              rel="noopener"
+            >
+              <span data-about-i18n="darametBtn">پرداخت ریالی با دارمت</span>
+            </a>
+            <a
+              class="payment-btn payment-btn-secondary"
+              href="https://payping.ir/d/B4Ne"
+              target="_blank"
+              rel="noopener"
+            >
+              <span data-about-i18n="payPingBtn">پرداخت با پی‌پینگ</span>
+            </a>
+            <div class="crypto-list" aria-label="Crypto donation addresses">
+              <div>
+                <strong>BTC</strong
+                ><code>bc1qlyvjpynewlhhhks4ggrvre2p9sceap93rrkff4</code>
+              </div>
+              <div>
+                <strong>ETH</strong
+                ><code>0x68fd4b097f0b17FC2Ad152a6D1f841413cb815DD</code>
+              </div>
+              <div>
+                <strong>TRX</strong
+                ><code>TQwXwPJQ8kAUTBYb4LhmDVwcifvsz8NbMz</code>
+              </div>
+              <div>
+                <strong>USDT BEP20</strong
+                ><code>0x68fd4b097f0b17FC2Ad152a6D1f841413cb815DD</code>
+              </div>
+              <div>
+                <strong>USD Polygon</strong
+                ><code>0x68fd4b097f0b17FC2Ad152a6D1f841413cb815DD</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer glass">
+      <div class="social-links" aria-label="Mirava social links">
+        <a
+          href="https://t.me/miravaorg"
+          target="_blank"
+          rel="noopener"
+          aria-label="Mirava Telegram"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M21.8 4.2 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.3L6 13.4 1.1 11.9c-1.1-.3-1.1-1.1.2-1.6L20.4 3c.9-.3 1.6.2 1.4 1.2Z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://github.com/MiravaOrg"
+          target="_blank"
+          rel="noopener"
+          aria-label="Mirava GitHub"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.9c-2.9.6-3.5-1.2-3.5-1.2-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 0 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.7-1.3-2.3-.3-4.7-1.2-4.7-5A3.9 3.9 0 0 1 6.6 8.8c-.1-.3-.5-1.3.1-2.7 0 0 .9-.3 2.8 1a9.5 9.5 0 0 1 5.1 0c1.9-1.3 2.8-1 2.8-1 .6 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1.1 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.7 1 .7 2V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://x.com/Miravaorg"
+          target="_blank"
+          rel="noopener"
+          aria-label="Mirava on X"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M14.5 10.3 22 2h-1.8l-6.5 7.2L8.5 2H2.5l7.9 10.9L2.5 22h1.8l6.9-7.7 5.5 7.7h6L14.5 10.3Zm-2.4 2.6-.8-1.1L5 3.4h2.7l5.1 6.9.8 1.1 6.6 9.1h-2.7l-5.4-7.6Z"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="footer-text">
+        <span data-about-i18n="footerText"
+          >© Mirava • متن‌باز • دسترسی پایدار برای جامعه توسعه • قدرت گرفته شده
+          از</span
+        >
+        <a
+          href="https://liara.ir/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="liara"
+        >
+          <img
+            src="https://liara.ir/favicon.ico"
+            alt="Liara"
+            width="16"
+            height="16"
+          />
+          <span data-about-i18n="liara">لیارا</span>
+        </a>
+      </div>
+    </footer>
+    <div id="aboutCopyToast" class="copy-toast glass">کپی شد.</div>
+    <script>
+      const aboutTranslations = {
+        fa: {
+          title: "درباره میراوا",
+          navHome: "خانه",
+          navAbout: "درباره",
+          navDonate: "حمایت",
+          heroTitle: "درباره میراوا",
+          heroText:
+            "میراوا یک نقشه زنده از مسیرهای قابل اتکای نرم‌افزاری است؛ جایی برای پیدا کردن میرورهایی که توسعه را در ایران سریع‌تر، پایدارتر و کم‌دردسرتر می‌کنند.",
+          missionEyebrow: "ماموریت",
+          missionTitle:
+            "وقتی مسیر اصلی کند می‌شود، مسیر جایگزین باید آماده باشد",
+          missionP1:
+            "میراوا یک پروژه جامعه‌محور برای جمع‌آوری، دسته‌بندی و پایش میرورهای نرم‌افزاری، مخازن پکیج و منابع زیرساختی قابل دسترس از داخل ایران است.",
+          missionP2:
+            "هدف ما ساده است: توسعه‌دهنده، ادمین سیستم و جامعه متن‌باز نباید برای نصب یک پکیج، گرفتن یک ایمیج یا به‌روزرسانی یک مخزن، درگیر آزمون و خطای بی‌پایان شود.",
+          missionP3:
+            "میراوا میرورهای قابل اعتماد را زیر نظر می‌گیرد، وضعیتشان را نمایش می‌دهد و کمک می‌کند در زمان محدودیت، اختلال یا کندی شبکه، انتخاب سریع‌تر و مطمئن‌تری داشته باشید.",
+          tracksEyebrow: "دسته‌بندی",
+          tracksTitle: "میرورها، مرتب و قابل فهم",
+          trackOs:
+            "مخازن سیستم‌عامل برای توزیع‌های لینوکس، BSD و ابزارهای پایه.",
+          trackContainers:
+            "رجیستری‌های کانتینر برای Docker و ایمیج‌های پرکاربرد زیرساختی.",
+          trackPackages:
+            "اکوسیستم‌های پکیج مثل npm، PyPI، Maven، Composer، NuGet و ابزارهای توسعه.",
+          supportEyebrow: "حمایت",
+          supportTitle: "کمک کنید این مسیر روشن بماند",
+          supportText:
+            "حمایت مالی شما صرف نگهداری، پایش، بهبود تجربه کاربری و هماهنگی جامعه می‌شود.",
+          darametBtn: "پرداخت ریالی با دارمت",
+          payPingBtn: "پرداخت با پی‌پینگ",
+          footerText:
+            "© Mirava • متن‌باز • دسترسی پایدار برای جامعه توسعه • قدرت گرفته شده از",
+          liara: "لیارا",
+        },
+        en: {
+          title: "About Mirava",
+          navHome: "Home",
+          navAbout: "About",
+          navDonate: "Donate",
+          heroTitle: "About Mirava",
+          heroText:
+            "Mirava maps the reliable software routes developers can still count on from inside Iran.",
+          missionEyebrow: "Mission",
+          missionTitle:
+            "When the main route slows down, a working route should be ready",
+          missionP1:
+            "Mirava is a community-driven project for collecting, organizing, and monitoring software mirrors, package repositories, and infrastructure resources reachable from within Iran.",
+          missionP2:
+            "Developers, system administrators, and open-source teams should not have to guess their way through package installs, image pulls, and repository updates.",
+          missionP3:
+            "Mirava tracks trusted mirrors, shows their current status, and helps people choose a faster and more dependable path during network limits, instability, or restrictions.",
+          tracksEyebrow: "Categories",
+          tracksTitle: "Mirrors, organized for real workflows",
+          trackOs:
+            "Operating system repositories for Linux, BSD, and core tooling.",
+          trackContainers:
+            "Container registries for Docker and common infrastructure images.",
+          trackPackages:
+            "Package ecosystems such as npm, PyPI, Maven, Composer, NuGet, and developer tooling.",
+          supportEyebrow: "Support",
+          supportTitle: "Help keep this route alive",
+          supportText:
+            "Donations support monitoring, hosting, maintenance, user experience work, and community coordination.",
+          darametBtn: "Rial Donation via Daramet",
+          payPingBtn: "PayPing Donation",
+          footerText:
+            "© Mirava • Open Source • Reliable access for the developer community • Powered by",
+          liara: "liara",
+        },
+      };
+
+      const aboutLangToggle = document.getElementById("aboutLangToggle");
+      const aboutCopyToast = document.getElementById("aboutCopyToast");
+      let aboutLang = localStorage.getItem("mirava-lang") || "fa";
+
+      function applyAboutLanguage() {
+        const dict = aboutTranslations[aboutLang];
+        document.documentElement.lang = aboutLang;
+        document.documentElement.dir = aboutLang === "fa" ? "rtl" : "ltr";
+        document.title = dict.title;
+        aboutLangToggle.textContent = aboutLang === "fa" ? "EN" : "FA";
+        document.querySelectorAll("[data-about-i18n]").forEach((element) => {
+          element.textContent = dict[element.dataset.aboutI18n];
+        });
+      }
+
+      aboutLangToggle.addEventListener("click", () => {
+        aboutLang = aboutLang === "fa" ? "en" : "fa";
+        localStorage.setItem("mirava-lang", aboutLang);
+        applyAboutLanguage();
+      });
+
+      function showAboutCopyToast() {
+        aboutCopyToast.textContent =
+          aboutLang === "fa" ? "آدرس کپی شد." : "Address copied.";
+        aboutCopyToast.classList.add("show");
+        setTimeout(() => aboutCopyToast.classList.remove("show"), 1800);
+      }
+
+      document.querySelectorAll(".crypto-list div").forEach((row) => {
+        row.addEventListener("click", () => {
+          const code = row.querySelector("code");
+          if (!code) return;
+          navigator.clipboard
+            .writeText(code.textContent.trim())
+            .then(showAboutCopyToast)
+            .catch(showAboutCopyToast);
+        });
+      });
+
+      applyAboutLanguage();
+    </script>
+  </body>
+</html>
