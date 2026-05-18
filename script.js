@@ -970,7 +970,7 @@ window.displayMirrors = (mirrors) => {
    CONTRIBUTORS (STATIC LIST)
 --------------------------------*/
 const contributors = [
-  "armon",
+  "ArmanTaheriGhaleTaki",
   "geedook",
   "maede-ps",
   "javadghane",
