@@ -88,6 +88,13 @@ const translations = {
     pkgStatus: "وضعیت پکیج‌ها",
     liveStatus: "وضعیت زنده",
     uptimeBar: "نمودار آپتایم",
+    sourceOriginal: "منبع اصلی",
+    sourceMirrorIr: "میرور ایران",
+    sourceMirrorIntl: "میرور بین‌المللی",
+    copyUrl: "کپی آدرس",
+    viewDetails: "مشاهده جزئیات",
+    radarTitle: "رادار زنده میرورها",
+    radarSubtitle: "پایش مستمر توسط Uptime Kuma — داده‌های واقعی سمت سرور",
   },
   en: {
     documentTitle: "Mirava — Free Mirrors",
@@ -169,6 +176,13 @@ const translations = {
     pkgStatus: "Package status",
     liveStatus: "Live status",
     uptimeBar: "Uptime bar",
+    sourceOriginal: "Original Source",
+    sourceMirrorIr: "Iran Mirror",
+    sourceMirrorIntl: "Intl Mirror",
+    copyUrl: "Copy URL",
+    viewDetails: "View details",
+    radarTitle: "Live Mirror Radar",
+    radarSubtitle: "Continuously monitored by Uptime Kuma — real server-side data",
   },
 };
 
@@ -191,6 +205,7 @@ let checkInProgress = false;
 let lastCheckedAt = null;
 const expandedMirrors = new Set();
 let activeCategory = "all";
+let radarFallbackActive = false;
 
 const categoryMatchers = {
   "operating-systems": [
@@ -293,6 +308,16 @@ function statusLabel(status) {
   return t("checking");
 }
 
+function sourceTypeLabel(sourceType) {
+  if (sourceType === "original") return t("sourceOriginal");
+  if (sourceType === "mirror-intl") return t("sourceMirrorIntl");
+  return t("sourceMirrorIr");
+}
+
+function resolvedSourceType(mirror) {
+  return mirror.sourceType || "mirror-ir";
+}
+
 function getFilteredMirrors() {
   const query = searchInput.value.trim().toLowerCase();
   const status = statusFilter.value;
@@ -338,11 +363,12 @@ function renderCards() {
 
   mirrors.forEach((mirror) => {
     const status = getStatus(mirror.url);
+    const sourceType = resolvedSourceType(mirror);
     const card = document.createElement("article");
     card.className = `mirror-card mirror-card-${status}`;
     card.tabIndex = 0;
     card.setAttribute("role", "button");
-    card.setAttribute("aria-label", `${mirror.name} - ${t("copyHint")}`);
+    card.setAttribute("aria-label", `${mirror.name} - ${t("viewDetails")}`);
 
     const packageBadges = (mirror.packageUrls && mirror.packageUrls.length
       ? mirror.packageUrls.slice(0, 8).map((pkg) => {
@@ -357,20 +383,37 @@ function renderCards() {
     card.innerHTML = `
       <div class="mirror-card-head">
         <h3>${mirror.name}</h3>
-        <span class="status-pill ${status}">${statusLabel(status)}</span>
+        <div class="card-head-badges">
+          <span class="source-tag source-${sourceType}">${sourceTypeLabel(sourceType)}</span>
+          <span class="status-pill ${status}">${statusLabel(status)}</span>
+        </div>
       </div>
       <p class="desc">${mirror.description}</p>
       <div class="packages">
         ${packageBadges}
       </div>
-      <span class="mirror-link">${mirror.url}</span>
+      <div class="card-footer">
+        <span class="mirror-link">${mirror.url}</span>
+        <button class="copy-url-btn" aria-label="${t("copyUrl")}" title="${t("copyUrl")}">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+            <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/>
+          </svg>
+        </button>
+      </div>
     `;
 
-    card.addEventListener("click", () => copyMirrorUrl(mirror.url));
+    card.querySelector(".copy-url-btn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      copyMirrorUrl(mirror.url);
+    });
+
+    card.addEventListener("click", () => {
+      window.location.href = `provider.html?url=${encodeURIComponent(mirror.url)}`;
+    });
     card.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        copyMirrorUrl(mirror.url);
+        window.location.href = `provider.html?url=${encodeURIComponent(mirror.url)}`;
       }
     });
 
@@ -946,7 +989,39 @@ function renderStatusGrid() {
 
 function renderAll() {
   renderCards();
-  renderStatusGrid();
+  if (radarFallbackActive) renderStatusGrid();
+}
+
+function initRadarFallback() {
+  const iframe = document.getElementById("radarFrame");
+  const wrap = document.getElementById("radarIframeWrap");
+  const fallback = document.getElementById("statusGrid");
+  if (!iframe || !wrap || !fallback) return;
+
+  function activateFallback() {
+    if (radarFallbackActive) return;
+    radarFallbackActive = true;
+    wrap.hidden = true;
+    fallback.removeAttribute("hidden");
+    renderStatusGrid();
+  }
+
+  let loadFired = false;
+  const startTime = Date.now();
+
+  iframe.addEventListener("load", () => {
+    loadFired = true;
+    // Blocked iframes (X-Frame-Options) resolve in < 800ms;
+    // a real Uptime Kuma page with JS takes much longer.
+    if (Date.now() - startTime < 1500) {
+      activateFallback();
+    }
+  });
+
+  // Safety net: if load never fires, fall back after 8s
+  setTimeout(() => {
+    if (!loadFired) activateFallback();
+  }, 8000);
 }
 
 function applyLanguage() {
@@ -1059,6 +1134,7 @@ async function loadMirrors() {
 
     renderPackageOptions();
     applyLanguage();
+    initRadarFallback();
     updateConnectivity();
     setInterval(updateConnectivity, 15000);
   } catch {

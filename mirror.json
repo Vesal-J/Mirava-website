@@ -4,13 +4,15 @@
       "name": "Jamko",
       "url": "https://jamko.ir",
       "description": "Provides documentation and configuration examples for easier use",
-      "packages": ["Maven", "Gradle", "Android SDK", "APT", "RPM", "NuGet", "Yarn", "Composer", "pip"]
+      "packages": ["Maven", "Gradle", "Android SDK", "APT", "RPM", "NuGet", "Yarn", "Composer", "pip"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Runflare",
       "url": "https://runflare.com/mirrors",
       "description": "Features a simple guide and automatic daily updates",
       "packages": ["Composer/Packagist", "PyPI", "npm", "Node.js"],
+      "sourceType": "mirror-ir",
       "packageUrls": [
         {"name": "PyPI", "url": "https://pypi.runflare.com"},
         {"name": "npm", "url": "https://npm.runflare.com"},
@@ -23,6 +25,7 @@
       "url": "https://repo.iut.ac.ir",
       "description": "Comprehensive mirror of Isfahan University of Technology with extensive coverage of Linux distributions and open-source projects",
       "packages": ["Debian", "Ubuntu", "Mint", "Arch Linux", "Manjaro", "Raspbian", "Alpine", "Rocky Linux", "Fedora", "OpenSUSE", "OpenBSD", "CTAN"],
+      "sourceType": "mirror-ir",
       "packageUrls": [
         {"name": "Ubuntu", "url": "https://repo.iut.ac.ir/ubuntu/"},
         {"name": "Debian", "url": "https://repo.iut.ac.ir/debian/"},
@@ -35,31 +38,36 @@
       "name": "Arvancloud",
       "url": "https://arvancloud.ir/dev/linux-repository",
       "description": "Internal and high-speed mirror of popular GNU/Linux distribution repositories on Arvan Cloud servers",
-      "packages": ["Debian", "Ubuntu", "CentOS", "Alpine", "Arch Linux", "OpenSUSE", "Manjaro"]
+      "packages": ["Debian", "Ubuntu", "CentOS", "Alpine", "Arch Linux", "OpenSUSE", "Manjaro"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Iran Server",
       "url": "https://mirror.iranserver.com",
       "description": "High-speed internal mirrors on Iran Server servers",
-      "packages": ["Debian", "Ubuntu", "CentOS"]
+      "packages": ["Debian", "Ubuntu", "CentOS"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Mobin Host",
       "url": "https://docker.mobinhost.com",
       "description": "Docker Registry",
-      "packages": ["Docker Registry"]
+      "packages": ["Docker Registry"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Arvancloud",
       "url": "https://arvancloud.ir/fa/dev/docker",
       "description": "Internal mirror for Docker",
-      "packages": ["Docker Registry"]
+      "packages": ["Docker Registry"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Liara",
       "url": "https://liara.ir/mirrors",
       "description": "Internal mirror with documentation and configuration examples",
       "packages": ["Linux distributions", "programming packages", "Docker images Registry"],
+      "sourceType": "mirror-ir",
       "packageUrls": [
         {"name": "Docker", "url": "https://docker.liara.ir"},
         {"name": "pip", "url": "https://pip.liara.ir"},
@@ -70,31 +78,36 @@
       "name": "En-mirror",
       "url": "https://en-mirror.ir",
       "description": "Comprehensive mirror for Gradle, consisting of Android library repositories including Maven Central - Google - Jitpack",
-      "packages": ["Google", "Maven Central", "Jitpack", "Others(Can be added)"]
+      "packages": ["Google", "Maven Central", "Jitpack", "Others(Can be added)"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Docker Kernel",
       "url": "https://docker.kernel.ir",
       "description": "Docker Registry",
-      "packages": ["Docker Registry"]
+      "packages": ["Docker Registry"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Afranet",
       "url": "https://afranet.com",
       "description": "GNU/Linux distribution mirror",
-      "packages": ["Debian", "Ubuntu", "CentOS"]
+      "packages": ["Debian", "Ubuntu", "CentOS"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Pishgaman Ubuntu",
       "url": "https://ubuntu.pishgaman.net",
       "description": "Ubuntu mirror",
-      "packages": ["Ubuntu"]
+      "packages": ["Ubuntu"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Pardisco",
       "url": "https://mirrors.pardisco.co",
       "description": "Comprehensive GNU/Linux and programming package mirrors",
       "packages": ["Ubuntu", "Debian", "CentOs", "Alpine", "PyPI", "NPM", "Go", "NuGet", "Docker Registry", "OmniOS", "PkgSrc"],
+      "sourceType": "mirror-ir",
       "packageUrls": [
         {"name": "Ubuntu", "url": "https://mirrors.pardisco.co/ubuntu/"},
         {"name": "Debian", "url": "https://mirrors.pardisco.co/debian/"},
@@ -108,97 +121,113 @@
       "name": "Ubuntu Official Iran",
       "url": "https://ir.archive.ubuntu.com",
       "description": "Official Ubuntu mirror",
-      "packages": ["Ubuntu"]
+      "packages": ["Ubuntu"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "0-1 Cloud Mirror",
       "url": "https://mirror.0-1.cloud",
       "description": "Mirrors of Almalinux, Alpine, Archlinux, CentOS, Debian, EPEL, FreeBSD, Mangaro, MariaDB, Raspbian, Ubuntu, Windows",
-      "packages": ["Almalinux", "Alpine", "Archlinux", "CentOS", "Debian", "EPEL", "FreeBSD", "Mangaro", "MariaDB", "Raspbian", "Ubuntu", "Windows"]
+      "packages": ["Almalinux", "Alpine", "Archlinux", "CentOS", "Debian", "EPEL", "FreeBSD", "Mangaro", "MariaDB", "Raspbian", "Ubuntu", "Windows"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "ManageIT Ubuntu",
       "url": "https://mirror.manageit.ir/ubuntu",
       "description": "Ubuntu mirror",
-      "packages": ["Ubuntu"]
+      "packages": ["Ubuntu"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Aminidc",
       "url": "https://mirror.aminidc.com",
       "description": "Mirrors of most GNU/Linux distributions and Windows Server",
-      "packages": ["Almalinux", "Debian", "EPEL", "FIO", "HPO", "HTML", "MINT", "RHEL", "Rocky", "Ubuntu", "Windows Server"]
+      "packages": ["Almalinux", "Debian", "EPEL", "FIO", "HPO", "HTML", "MINT", "RHEL", "Rocky", "Ubuntu", "Windows Server"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "KimiaHost Ubuntu",
       "url": "https://ubuntu-mirror.kimiahost.com",
       "description": "Ubuntu mirror",
-      "packages": ["Ubuntu"]
+      "packages": ["Ubuntu"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "DigitalVPS Ubuntu",
       "url": "https://mirror.digitalvps.ir/ubuntu",
       "description": "Ubuntu mirror",
-      "packages": ["Ubuntu"]
+      "packages": ["Ubuntu"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Sindad Ubuntu",
       "url": "https://ir.ubuntu.sindad.cloud",
       "description": "Ubuntu mirror",
-      "packages": ["Ubuntu"]
+      "packages": ["Ubuntu"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Sindad CentOS",
       "url": "https://ir.centos.sindad.cloud",
       "description": "CentOS mirror",
-      "packages": ["Centos"]
+      "packages": ["Centos"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Sindad EPEL",
       "url": "https://ir.epel.sindad.cloud",
       "description": "EPEL mirror",
-      "packages": ["Epel"]
+      "packages": ["Epel"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Faraso",
       "url": "https://mirror.faraso.org",
       "description": "Mirrors of CentOS, EPEL, Virtz, Webscript and Chrome and Java software",
-      "packages": ["CentOS", "EPEL", "Virtz", "Webscript", "Chrom", "Java_Runtime", "Java Dev", "Java_SE8"]
+      "packages": ["CentOS", "EPEL", "Virtz", "Webscript", "Chrom", "Java_Runtime", "Java Dev", "Java_SE8"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "DeltaChat",
       "url": "https://chat.shhh.ir",
       "description": "DeltaChat mirror",
-      "packages": ["DeltaChat"]
+      "packages": ["DeltaChat"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Atlantics Cloud",
       "url": "https://atlanticscloud.ir",
       "description": "Docker Registry and Ubuntu and NPM mirror",
-      "packages": ["Ubuntu", "Docker Registry", "NPM"]
+      "packages": ["Ubuntu", "Docker Registry", "NPM"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Chabokan",
       "url": "https://chabokan.ir",
       "description": "Programming package service mirror",
-      "packages": ["NPM", "Python", "PHP", "Docker", "NuGet"]
+      "packages": ["NPM", "Python", "PHP", "Docker", "NuGet"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Abrha",
       "url": "https://abrha.net",
       "description": "GNU/Linux operating system mirrors",
-      "packages": ["Ubuntu", "Almalinux", "Debian", "EPEL", "ProxMox", "Avast", "Clamav"]
+      "packages": ["Ubuntu", "Almalinux", "Debian", "EPEL", "ProxMox", "Avast", "Clamav"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Parsdev",
       "url": "https://parsdev.com",
       "description": "GNU/Linux distribution mirrors",
-      "packages": ["Ubuntu", "Almalinux", "Debian"]
+      "packages": ["Ubuntu", "Almalinux", "Debian"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Shatel",
       "url": "https://mirror.shatel.ir",
       "description": "Ubuntu mirror",
       "packages": ["Ubuntu", "Debian", "Kali"],
+      "sourceType": "mirror-ir",
       "packageUrls": [
         {"name": "Ubuntu", "url": "https://mirror.shatel.ir/ubuntu/"},
         {"name": "Debian", "url": "https://mirror.shatel.ir/debian/"},
@@ -209,43 +238,50 @@
       "name": "Kubar Cloud",
       "url": "https://mirrors.kubarcloud.com",
       "description": "Kubar internal mirror with support",
-      "packages": ["Linux Kernel Sources", "Open-Source Archives"]
+      "packages": ["Linux Kernel Sources", "Open-Source Archives"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Iran IT Organization",
       "url": "https://repo-portal.ito.gov.ir/repo",
       "description": "Maintained by Iran Information Technology Organization",
-      "packages": ["CentOS", "Fedora", "Rocky", "Python", "npm", "Yarn"]
+      "packages": ["CentOS", "Fedora", "Rocky", "Python", "npm", "Yarn"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "HamDocker Hub",
       "url": "https://hub.hamdocker.ir",
       "description": "Docker registry",
-      "packages": ["Docker Registry"]
+      "packages": ["Docker Registry"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Myket Maven",
       "url": "https://maven.myket.ir",
       "description": "Android-focused Maven mirror",
-      "packages": ["Maven Central", "Google Maven", "JitPack"]
+      "packages": ["Maven Central", "Google Maven", "JitPack"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "ArvanCloud Linux Mirrors",
       "url": "https://www.arvancloud.ir/en/dev/linux-repository",
       "description": "High-speed mirrors hosted on ArvanCloud",
-      "packages": ["Debian", "Ubuntu", "CentOS", "Alpine", "Arch", "OpenSUSE", "Manjaro"]
+      "packages": ["Debian", "Ubuntu", "CentOS", "Alpine", "Arch", "OpenSUSE", "Manjaro"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "IranServer",
       "url": "https://mirror.iranserver.com",
       "description": "High-speed mirrors by IranServer",
-      "packages": ["Debian", "Ubuntu", "CentOS"]
+      "packages": ["Debian", "Ubuntu", "CentOS"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "MobinHost Mirror",
       "url": "https://mirror.mobinhost.com",
       "description": "Comprehensive GNU/Linux mirrors",
       "packages": ["FreeBSD", "AlmaLinux", "Alpine", "Arch", "Debian", "EPEL", "Manjaro", "MariaDB", "MongoDB", "Ubuntu", "Zabbix"],
+      "sourceType": "mirror-ir",
       "packageUrls": [
         {"name": "Ubuntu", "url": "https://mirror.mobinhost.com/ubuntu/"},
         {"name": "Debian", "url": "https://mirror.mobinhost.com/debian/"},
@@ -258,25 +294,29 @@
       "name": "Focker",
       "url": "https://focker.ir",
       "description": "Docker mirror",
-      "packages": ["Docker Registry"]
+      "packages": ["Docker Registry"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Terraform Peaker",
       "url": "https://terraform.peaker.info",
       "description": "Official Terraform proxy",
-      "packages": ["Terraform"]
+      "packages": ["Terraform"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Afranet",
       "url": "http://mirror.afranet.com",
       "description": "GNU/Linux distributions mirror",
-      "packages": ["Debian", "Ubuntu", "CentOS"]
+      "packages": ["Debian", "Ubuntu", "CentOS"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Pardisco",
       "url": "https://mirrors.pardisco.co",
       "description": "GNU/Linux & programming package mirrors",
       "packages": ["Ubuntu", "Debian", "Alpine", "PyPI", "NPM", "Go", "NuGet", "Docker", "OmniOS"],
+      "sourceType": "mirror-ir",
       "packageUrls": [
         {"name": "Ubuntu", "url": "https://mirrors.pardisco.co/ubuntu/"},
         {"name": "Debian", "url": "https://mirrors.pardisco.co/debian/"},
@@ -290,37 +330,43 @@
       "name": "CRAN UM",
       "url": "https://cran.um.ac.ir",
       "description": "R packages mirror",
-      "packages": ["CRAN"]
+      "packages": ["CRAN"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "AminIDC",
       "url": "http://mirror.aminidc.com",
       "description": "GNU/Linux & Windows Server mirrors",
-      "packages": ["Debian", "RHEL", "Rocky", "Ubuntu", "Windows Server"]
+      "packages": ["Debian", "RHEL", "Rocky", "Ubuntu", "Windows Server"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "AtlantisCloud",
       "url": "https://mirror.atlantiscloud.ir/",
       "description": "Docker, Ubuntu, and NPM mirrors",
-      "packages": ["Ubuntu", "Docker Registry", "NPM"]
+      "packages": ["Ubuntu", "Docker Registry", "NPM"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "ParsDev",
       "url": "https://mirror.parsdev.com/",
       "description": "GNU/Linux distributions mirror",
-      "packages": ["Ubuntu", "AlmaLinux", "Debian"]
+      "packages": ["Ubuntu", "AlmaLinux", "Debian"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "LinuxMirrors",
       "url": "https://linuxmirrors.ir/",
       "description": "GNU/Linux distributions mirror",
-      "packages": ["Debian", "Ubuntu", "Fedora", "Rocky", "Oracle Linux"]
+      "packages": ["Debian", "Ubuntu", "Fedora", "Rocky", "Oracle Linux"],
+      "sourceType": "mirror-ir"
     },
     {
       "name": "Hyperclouds",
       "url": "https://mirrors.hyperclouds.ir/",
       "description": "Hyperclouds Mirrors",
       "packages": ["Cargo", "Ubuntu", "Alpine", "Debian", "RubyGems", "Go Proxy", "PyPI", "Docker Registry"],
+      "sourceType": "mirror-ir",
       "packageUrls": [
         {"name": "Ubuntu", "url": "https://mirrors.hyperclouds.ir/ubuntu/"},
         {"name": "Debian", "url": "https://mirrors.hyperclouds.ir/debian/"},
@@ -338,43 +384,48 @@
       "country": "China",
       "url": "https://mirror.nyist.edu.cn/",
       "description": "University-operated open-source mirror",
-      "packages": ["Debian", "Ubuntu", "CentOS", "Fedora", "Arch Linux", "Alpine", "openSUSE", "Kali", "Linux Mint", "PyPI", "CRAN", "CPAN", "RubyGems"]
+      "packages": ["Debian", "Ubuntu", "CentOS", "Fedora", "Arch Linux", "Alpine", "openSUSE", "Kali", "Linux Mint", "PyPI", "CRAN", "CPAN", "RubyGems"],
+      "sourceType": "mirror-intl"
     },
     {
       "name": "NJU Mirror",
       "country": "China",
       "url": "https://mirror.nju.edu.cn/",
       "description": "Nanjing University official mirror site",
-      "packages": ["Debian", "Ubuntu", "CentOS", "Fedora", "Arch Linux", "Alpine", "openSUSE", "Manjaro", "Gentoo", "PyPI"]
+      "packages": ["Debian", "Ubuntu", "CentOS", "Fedora", "Arch Linux", "Alpine", "openSUSE", "Manjaro", "Gentoo", "PyPI"],
+      "sourceType": "mirror-intl"
     },
     {
       "name": "Huawei Cloud Mirror",
       "country": "China",
       "url": "https://mirrors.huaweicloud.com/home",
       "description": "Enterprise-grade mirror service operated by Huawei Cloud",
-      "packages": ["Debian", "Ubuntu", "CentOS Stream", "Fedora", "Arch Linux", "Alpine", "openEuler", "PyPI", "Maven", "Docker", "Kubernetes"]
+      "packages": ["Debian", "Ubuntu", "CentOS Stream", "Fedora", "Arch Linux", "Alpine", "openEuler", "PyPI", "Maven", "Docker", "Kubernetes"],
+      "sourceType": "mirror-intl"
     },
     {
       "name": "USTC Mirror",
       "country": "China",
       "url": "https://mirrors.ustc.edu.cn/",
       "description": "University of Science and Technology of China mirror",
-      "packages": ["Debian", "Ubuntu", "CentOS", "Fedora", "Arch Linux", "Alpine", "openSUSE", "Kali", "Manjaro", "PyPI", "CRAN", "Homebrew"]
+      "packages": ["Debian", "Ubuntu", "CentOS", "Fedora", "Arch Linux", "Alpine", "openSUSE", "Kali", "Manjaro", "PyPI", "CRAN", "Homebrew"],
+      "sourceType": "mirror-intl"
     },
     {
       "name": "Yandex Mirror",
       "country": "Russia",
       "url": "https://mirror.yandex.ru/",
       "description": "High-speed Russian mirror operated by Yandex",
-      "packages": ["Debian", "Ubuntu", "CentOS", "Fedora", "Arch Linux"]
+      "packages": ["Debian", "Ubuntu", "CentOS", "Fedora", "Arch Linux"],
+      "sourceType": "mirror-intl"
     },
     {
       "name": "Tsinghua University TUNA",
       "country": "China",
       "url": "https://mirrors.tuna.tsinghua.edu.cn/",
       "description": "Tsinghua University Network Association mirror",
-      "packages": ["Debian", "Ubuntu", "CentOS", "Fedora", "Arch Linux", "Alpine", "openSUSE", "Kali", "Manjaro", "PyPI", "Homebrew", "Docker"]
+      "packages": ["Debian", "Ubuntu", "CentOS", "Fedora", "Arch Linux", "Alpine", "openSUSE", "Kali", "Manjaro", "PyPI", "Homebrew", "Docker"],
+      "sourceType": "mirror-intl"
     }
   ]
 }
-

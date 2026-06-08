@@ -226,16 +226,27 @@
       </div>
     </section>
 
-    <!-- Status Grid -->
+    <!-- Live Radar (Uptime Kuma) -->
     <section class="section">
       <div class="section-title center-title">
         <span class="eyebrow" data-i18n="gridEyebrow">وضعیت اتصال</span>
-        <h2 data-i18n="gridTitle">وضعیت ۲۴ ساعته میرورها</h2>
-        <p class="section-subtitle" data-i18n="gridSubtitle">
-          هر خانه یک ساعت است — نگه‌دارید تا تاریخ و جزئیات ببینید
+        <h2 data-i18n="radarTitle">رادار زنده میرورها</h2>
+        <p class="section-subtitle" data-i18n="radarSubtitle">
+          پایش مستمر توسط Uptime Kuma — داده‌های واقعی سمت سرور
         </p>
       </div>
-      <div id="statusGrid" class="status-grid glass"></div>
+      <div class="radar-frame-wrap glass" id="radarIframeWrap">
+        <iframe
+          id="radarFrame"
+          src="https://mirava-gmhkka22gp.liara.run"
+          class="radar-frame"
+          title="Mirava Live Mirror Radar"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          sandbox="allow-scripts allow-same-origin allow-popups"
+        ></iframe>
+      </div>
+      <div id="statusGrid" class="status-grid glass" hidden></div>
     </section>
 
     <!-- Support -->
