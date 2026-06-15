@@ -1173,6 +1173,7 @@ const contributors = [
   "msnp1381",
   "sinaaboutalebi",
   "ehsannarmani",
+  "erfuuan",
   "linuxmaster14",
   "imdanieldev",
   "mrarianet",
