@@ -1245,4 +1245,82 @@ langToggle.addEventListener("click", () => {
   applyLanguage();
 });
 
+function initInPageNav() {
+  const supportSection = document.getElementById("support");
+  if (!supportSection) return;
+
+  const homeLink = document.querySelector('.site-nav a[href="index.html"]');
+  const supportNavLink = document.querySelector('.site-nav a[href="#support"]');
+  const supportLinks = document.querySelectorAll('a[href="#support"]');
+
+  function getTopbarOffset() {
+    const raw = getComputedStyle(document.documentElement)
+      .getPropertyValue("--topbar-offset")
+      .trim();
+    return parseInt(raw, 10) || 56;
+  }
+
+  function setNavActive(section) {
+    if (homeLink) {
+      if (section === "support") {
+        homeLink.removeAttribute("aria-current");
+      } else {
+        homeLink.setAttribute("aria-current", "page");
+      }
+    }
+    if (supportNavLink) {
+      if (section === "support") {
+        supportNavLink.setAttribute("aria-current", "location");
+      } else {
+        supportNavLink.removeAttribute("aria-current");
+      }
+    }
+  }
+
+  function scrollToSupport(updateHash = true) {
+    supportSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (updateHash) {
+      history.replaceState(null, "", "#support");
+    }
+    setNavActive("support");
+  }
+
+  let navScrollLock = false;
+
+  function updateNavFromScroll() {
+    if (navScrollLock) return;
+
+    const offset = getTopbarOffset();
+    const rect = supportSection.getBoundingClientRect();
+    const inSupport = rect.top <= offset + 24 && rect.bottom > offset + 24;
+    setNavActive(inSupport ? "support" : "home");
+
+    if (!inSupport && location.hash === "#support") {
+      history.replaceState(null, "", `${location.pathname}${location.search}`);
+    }
+  }
+
+  supportLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      navScrollLock = true;
+      scrollToSupport();
+      link.blur();
+      setTimeout(() => {
+        navScrollLock = false;
+        updateNavFromScroll();
+      }, 700);
+    });
+  });
+
+  window.addEventListener("scroll", updateNavFromScroll, { passive: true });
+  updateNavFromScroll();
+
+  if (location.hash === "#support") {
+    requestAnimationFrame(() => scrollToSupport(false));
+  }
+}
+
+initInPageNav();
+
 loadMirrors();
