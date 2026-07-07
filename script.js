@@ -182,7 +182,8 @@ const translations = {
     copyUrl: "Copy URL",
     viewDetails: "View details",
     radarTitle: "Live Mirror Radar",
-    radarSubtitle: "Continuously monitored by Uptime Kuma — real server-side data",
+    radarSubtitle:
+      "Continuously monitored by Uptime Kuma — real server-side data",
   },
 };
 
@@ -286,7 +287,7 @@ function mirrorMatchesCategory(mirror, category) {
     mirror.description,
     mirror.url,
     ...mirror.packages,
-    ...((mirror.packageUrls || []).map((pkg) => `${pkg.name} ${pkg.url}`)),
+    ...(mirror.packageUrls || []).map((pkg) => `${pkg.name} ${pkg.url}`),
   ]
     .join(" ")
     .toLowerCase();
@@ -370,14 +371,18 @@ function renderCards() {
     card.setAttribute("role", "button");
     card.setAttribute("aria-label", `${mirror.name} - ${t("viewDetails")}`);
 
-    const packageBadges = (mirror.packageUrls && mirror.packageUrls.length
-      ? mirror.packageUrls.slice(0, 8).map((pkg) => {
-          const s = getStatus(pkg.url);
-          return `<span class="package pkg-${s}" title="${pkg.url}">${pkg.name}</span>`;
-        })
-      : mirror.packages.slice(0, 8).map((pkg) =>
-          `<span class="package pkg-${status}" title="${mirror.url}">${pkg}</span>`,
-        )
+    const packageBadges = (
+      mirror.packageUrls && mirror.packageUrls.length
+        ? mirror.packageUrls.slice(0, 8).map((pkg) => {
+            const s = getStatus(pkg.url);
+            return `<span class="package pkg-${s}" title="${pkg.url}">${pkg.name}</span>`;
+          })
+        : mirror.packages
+            .slice(0, 8)
+            .map(
+              (pkg) =>
+                `<span class="package pkg-${status}" title="${mirror.url}">${pkg}</span>`,
+            )
     ).join("");
 
     card.innerHTML = `
@@ -483,7 +488,8 @@ function escapeAttr(str) {
 }
 
 function formatLastChecked() {
-  if (!lastCheckedAt) return currentLang === "fa" ? "در حال بررسی…" : "checking…";
+  if (!lastCheckedAt)
+    return currentLang === "fa" ? "در حال بررسی…" : "checking…";
   const s = Math.round((Date.now() - lastCheckedAt) / 1000);
   if (s < 10) return currentLang === "fa" ? "همین الان" : "just now";
   if (s < 60) return currentLang === "fa" ? `${s} ثانیه پیش` : `${s}s ago`;
@@ -555,7 +561,8 @@ function recordHourlySnapshot(results) {
 
 function getMirrorUptime(mirrorUrl) {
   const buckets = getHourlyBuckets();
-  let up = 0, total = 0;
+  let up = 0,
+    total = 0;
   buckets.forEach((bucket) => {
     if (bucket.mirrors && typeof bucket.mirrors[mirrorUrl] === "boolean") {
       total++;
@@ -592,7 +599,9 @@ function renderAccessibilityChart() {
             : "var(--red)";
 
     const pctText =
-      uptime === null ? `<span class="acc-no-data">${t("noData")}</span>` : `${uptime}%`;
+      uptime === null
+        ? `<span class="acc-no-data">${t("noData")}</span>`
+        : `${uptime}%`;
 
     const sparkline = recent.length
       ? recent.map((v) => `<i class="${v ? "up" : "down"}"></i>`).join("")
@@ -791,7 +800,8 @@ function renderStatusGrid() {
 
   // Pre-compute stats per mirror
   const mirrorStats = featuredMirrors.map((mirror) => {
-    let upCount = 0, totalCount = 0;
+    let upCount = 0,
+      totalCount = 0;
     const currentStatus = getStatus(mirror.url);
     buckets.forEach((b) => {
       if (b.mirrors && typeof b.mirrors[mirror.url] === "boolean") {
@@ -803,67 +813,108 @@ function renderStatusGrid() {
     return { mirror, pct, currentStatus };
   });
 
-  const onlineCount  = mirrorStats.filter((s) => s.currentStatus === "up").length;
-  const offlineCount = mirrorStats.filter((s) => s.currentStatus === "down").length;
-  const knownPcts    = mirrorStats.filter((s) => s.pct !== null).map((s) => s.pct);
-  const avgUptime    = knownPcts.length
+  const onlineCount = mirrorStats.filter(
+    (s) => s.currentStatus === "up",
+  ).length;
+  const offlineCount = mirrorStats.filter(
+    (s) => s.currentStatus === "down",
+  ).length;
+  const knownPcts = mirrorStats.filter((s) => s.pct !== null).map((s) => s.pct);
+  const avgUptime = knownPcts.length
     ? Math.round(knownPcts.reduce((a, b) => a + b, 0) / knownPcts.length)
     : null;
 
-  const headlineClass = avgUptime === null || avgUptime >= 80 ? "sg-hl-ok"
-    : avgUptime >= 50 ? "sg-hl-warn" : "sg-hl-crit";
+  const headlineClass =
+    avgUptime === null || avgUptime >= 80
+      ? "sg-hl-ok"
+      : avgUptime >= 50
+        ? "sg-hl-warn"
+        : "sg-hl-crit";
   const headlineText =
     avgUptime === null || avgUptime >= 80
-      ? (currentLang === "fa" ? "همه سیستم‌ها عملیاتی" : "All systems operational")
+      ? currentLang === "fa"
+        ? "همه سیستم‌ها عملیاتی"
+        : "All systems operational"
       : avgUptime >= 50
-      ? (currentLang === "fa" ? "اختلال جزئی در برخی میرورها" : "Partial degradation detected")
-      : (currentLang === "fa" ? "اختلال گسترده شناسایی شد" : "Major outage detected");
+        ? currentLang === "fa"
+          ? "اختلال جزئی در برخی میرورها"
+          : "Partial degradation detected"
+        : currentLang === "fa"
+          ? "اختلال گسترده شناسایی شد"
+          : "Major outage detected";
 
   const hourHeaders = buckets
     .map((bucket, i) => {
       const isCurrent = i === buckets.length - 1;
-      const label = i % 4 === 0
-        ? formatHourLabel(bucket.hour)
-        : isCurrent ? (currentLang === "fa" ? "الان" : "now") : "";
+      const label =
+        i % 4 === 0
+          ? formatHourLabel(bucket.hour)
+          : isCurrent
+            ? currentLang === "fa"
+              ? "الان"
+              : "now"
+            : "";
       return `<div class="sg-hour-label${isCurrent ? " sg-now" : ""}">${label}</div>`;
     })
     .join("");
 
   const rows = mirrorStats
     .map(({ mirror, pct, currentStatus }) => {
-      const liveKnown  = currentStatus === "up" || currentStatus === "down";
-      const pctClass   = pct === null ? "" : pct >= 80 ? "sg-good" : pct >= 50 ? "sg-mid" : "sg-bad";
-      const pctText    = pct !== null ? `${pct}%` : "—";
+      const liveKnown = currentStatus === "up" || currentStatus === "down";
+      const pctClass =
+        pct === null
+          ? ""
+          : pct >= 80
+            ? "sg-good"
+            : pct >= 50
+              ? "sg-mid"
+              : "sg-bad";
+      const pctText = pct !== null ? `${pct}%` : "—";
       const isExpanded = expandedMirrors.has(mirror.url);
-      const hasPkgs    = true; // every mirror shows package status
+      const hasPkgs = true; // every mirror shows package status
 
       const cells = buckets
         .map((bucket, i) => {
           const isCurrent = i === buckets.length - 1;
-          let state = "nodata", estimated = false;
-          if (bucket.mirrors && typeof bucket.mirrors[mirror.url] === "boolean") {
+          let state = "nodata",
+            estimated = false;
+          if (
+            bucket.mirrors &&
+            typeof bucket.mirrors[mirror.url] === "boolean"
+          ) {
             state = bucket.mirrors[mirror.url] ? "up" : "down";
           } else if (liveKnown) {
             state = currentStatus;
             estimated = true;
           }
           const statusWord =
-            state === "up" ? t("online") : state === "down" ? t("offline") : t("checking");
+            state === "up"
+              ? t("online")
+              : state === "down"
+                ? t("offline")
+                : t("checking");
           const tip = escapeAttr(
-            [mirror.name, formatDateTimeLabel(bucket.hour), statusWord + (estimated ? " (live)" : ""), state].join("\x01"),
+            [
+              mirror.name,
+              formatDateTimeLabel(bucket.hour),
+              statusWord + (estimated ? " (live)" : ""),
+              state,
+            ].join("\x01"),
           );
           return `<div class="sg-cell sg-${state}${estimated ? " sg-est" : ""}${isCurrent ? " sg-current" : ""}" data-tip="${tip}"></div>`;
         })
         .join("");
 
-      const pkgItems = (mirror.packageUrls && mirror.packageUrls.length
-        ? mirror.packageUrls.map((pkg) => {
-            const ps = getStatus(pkg.url);
-            return `<span class="sg-pkg-item sg-pkg-${ps}" title="${pkg.url}"><span class="sg-pkg-dot"></span>${pkg.name}</span>`;
-          })
-        : mirror.packages.map((pkg) =>
-            `<span class="sg-pkg-item sg-pkg-${currentStatus}" title="${mirror.url}"><span class="sg-pkg-dot"></span>${pkg}</span>`,
-          )
+      const pkgItems = (
+        mirror.packageUrls && mirror.packageUrls.length
+          ? mirror.packageUrls.map((pkg) => {
+              const ps = getStatus(pkg.url);
+              return `<span class="sg-pkg-item sg-pkg-${ps}" title="${pkg.url}"><span class="sg-pkg-dot"></span>${pkg.name}</span>`;
+            })
+          : mirror.packages.map(
+              (pkg) =>
+                `<span class="sg-pkg-item sg-pkg-${currentStatus}" title="${mirror.url}"><span class="sg-pkg-dot"></span>${pkg}</span>`,
+            )
       ).join("");
 
       const pkgPanel = `
@@ -942,7 +993,10 @@ function renderStatusGrid() {
   const tip = container.querySelector("#sgTooltip");
   container.addEventListener("mousemove", (e) => {
     const cell = e.target.closest(".sg-cell");
-    if (!cell || !cell.dataset.tip) { tip.hidden = true; return; }
+    if (!cell || !cell.dataset.tip) {
+      tip.hidden = true;
+      return;
+    }
     const [name, dateStr, statusStr, state] = cell.dataset.tip.split("\x01");
     tip.innerHTML = `
       <div class="sg-tip-name">${name}</div>
@@ -955,17 +1009,19 @@ function renderStatusGrid() {
     if (x + 240 > rect.width) x = e.clientX - rect.left - 240;
     if (y < 4) y = e.clientY - rect.top + 20;
     tip.style.left = `${x}px`;
-    tip.style.top  = `${y}px`;
+    tip.style.top = `${y}px`;
   });
-  container.addEventListener("mouseleave", () => { tip.hidden = true; });
+  container.addEventListener("mouseleave", () => {
+    tip.hidden = true;
+  });
 
   // Expand/collapse row to show per-package status
   container.querySelectorAll(".sg-row-clickable").forEach((row) => {
     const toggle = () => {
-      const url   = row.dataset.url;
-      const wrap  = row.closest(".sg-row-wrap");
+      const url = row.dataset.url;
+      const wrap = row.closest(".sg-row-wrap");
       const panel = wrap && wrap.querySelector(".sg-pkg-panel");
-      const chev  = row.querySelector(".sg-chevron");
+      const chev = row.querySelector(".sg-chevron");
       if (!panel) return;
       const open = expandedMirrors.has(url);
       if (open) {
@@ -982,7 +1038,10 @@ function renderStatusGrid() {
     };
     row.addEventListener("click", toggle);
     row.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle();
+      }
     });
   });
 }
@@ -1030,12 +1089,22 @@ function applyLanguage() {
   document.title = t("documentTitle");
   langToggle.textContent = currentLang === "fa" ? "EN" : "FA";
   searchInput.placeholder = t("searchPlaceholder");
-  document.getElementById("mirrorName").placeholder = t("mirrorNamePlaceholder");
+  document.getElementById("mirrorName").placeholder = t(
+    "mirrorNamePlaceholder",
+  );
   document.getElementById("mirrorUrl").placeholder = t("mirrorUrlPlaceholder");
-  document.getElementById("mirrorDesc").placeholder = t("mirrorDescPlaceholder");
-  document.getElementById("mirrorPackages").placeholder = t("mirrorPackagesPlaceholder");
-  document.getElementById("submitterName").placeholder = t("submitterNamePlaceholder");
-  document.getElementById("submitterEmail").placeholder = t("submitterEmailPlaceholder");
+  document.getElementById("mirrorDesc").placeholder = t(
+    "mirrorDescPlaceholder",
+  );
+  document.getElementById("mirrorPackages").placeholder = t(
+    "mirrorPackagesPlaceholder",
+  );
+  document.getElementById("submitterName").placeholder = t(
+    "submitterNamePlaceholder",
+  );
+  document.getElementById("submitterEmail").placeholder = t(
+    "submitterEmailPlaceholder",
+  );
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n;
@@ -1184,6 +1253,7 @@ const contributors = [
   "alialmasi",
   "alitavaliee",
   "ohmydevops",
+  "amirabbas-gh",
 ];
 
 const contributorsContainer = document.getElementById("contributors");
